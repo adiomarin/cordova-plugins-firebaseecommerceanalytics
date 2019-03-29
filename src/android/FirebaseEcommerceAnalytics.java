@@ -418,7 +418,9 @@ public class FirebaseEcommerceAnalytics extends CordovaPlugin {
 
     private void logPurchases(JSONArray products, JSONObject transactionOptions, CallbackContext callbackContext) {
         try {
-            // create a list of items(products) needs to be added to ecommerceBundle
+          /*
+          
+          // create a list of items(products) needs to be added to ecommerceBundle
             ArrayList items = new ArrayList();
 
             if (transactionOptions.getString("TRANSACTION_ID").isEmpty()
@@ -474,6 +476,51 @@ public class FirebaseEcommerceAnalytics extends CordovaPlugin {
             ecommerceBundle.putDouble(Param.TAX, transactionOptions.getDouble("TAX"));
             ecommerceBundle.putDouble(Param.SHIPPING, transactionOptions.getDouble("SHIPPING"));
             ecommerceBundle.putString(Param.COUPON, transactionOptions.getString("COUPON"));
+
+            // Log ecommerce_purchase event with ecommerce bundle
+
+            */
+
+            // Define product with relevant parameters
+
+            Bundle product1 = new Bundle();
+            product1.putString( Param.ITEM_ID, "sku5555"); // ITEM_ID or ITEM_NAME is required
+            product1.putString( Param.ITEM_NAME, "Arriva T-Shirt");
+            product1.putString( Param.ITEM_CATEGORY, "Arriva Apparel/Men/Shirts");
+            product1.putString( Param.ITEM_VARIANT, "Blue");
+            product1.putString( Param.ITEM_BRAND, "Arriva");
+            product1.putDouble( Param.PRICE, 39.99 );
+            product1.putString( Param.CURRENCY, "USD" ); // Item-level currency unused today
+            product1.putLong( Param.QUANTITY, 1 );
+
+            Bundle product2 = new Bundle();
+            product2.putString( Param.ITEM_ID, "sku9999");
+            product2.putString( Param.ITEM_NAME, "Arriva Android Workout Capris");
+            product2.putString( Param.ITEM_CATEGORY, "Arriva Apparel/Women/Pants");
+            product2.putString( Param.ITEM_VARIANT, "Black");
+            product2.putString( Param.ITEM_BRAND, "Arriva");
+            product2.putDouble( Param.PRICE, 59.99 );
+            product2.putString( Param.CURRENCY, "USD" ); // Item-level currency unused today
+            product2.putLong( Param.QUANTITY, 1 );
+
+            // Prepare ecommerce bundle
+
+            ArrayList items = new ArrayList();
+            items.add(product1);
+            items.add(product2);
+
+            Bundle ecommerceBundle = new Bundle();
+            ecommerceBundle.putParcelableArrayList( "items", items );
+
+            // Set relevant transaction-level parameters
+
+            ecommerceBundle.putString( Param.TRANSACTION_ID, "T66666" );
+            ecommerceBundle.putString( Param.AFFILIATION, "Google Store - Online" );
+            ecommerceBundle.putDouble( Param.VALUE, 100.00 );        // Revenue
+            ecommerceBundle.putDouble( Param.TAX, 2.85 );
+            ecommerceBundle.putDouble( Param.SHIPPING, 5.34 );
+            ecommerceBundle.putString( Param.CURRENCY, "USD" );
+            ecommerceBundle.putString( Param.COUPON, "SUMMER2019" );
 
             // Log ecommerce_purchase event with ecommerce bundle
 
