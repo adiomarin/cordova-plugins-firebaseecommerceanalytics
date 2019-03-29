@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugins-firebaseecommerceanalytics",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Firebase Enhanced Ecommerce Analytics Plugin",
   "cordova": {
     "id": "cordova-plugins-firebaseecommerceanalytics",

@@ -490,7 +490,7 @@ public class FirebaseEcommerceAnalytics extends CordovaPlugin {
             product1.putString( Param.ITEM_VARIANT, "Blue");
             product1.putString( Param.ITEM_BRAND, "Arriva");
             product1.putDouble( Param.PRICE, 39.99 );
-            product1.putString( Param.CURRENCY, "USD" ); // Item-level currency unused today
+            product1.putString( Param.CURRENCY, "HRK" ); // Item-level currency unused today
             product1.putLong( Param.QUANTITY, 1 );
 
             Bundle product2 = new Bundle();
@@ -500,7 +500,7 @@ public class FirebaseEcommerceAnalytics extends CordovaPlugin {
             product2.putString( Param.ITEM_VARIANT, "Black");
             product2.putString( Param.ITEM_BRAND, "Arriva");
             product2.putDouble( Param.PRICE, 59.99 );
-            product2.putString( Param.CURRENCY, "USD" ); // Item-level currency unused today
+            product2.putString( Param.CURRENCY, "HRK" ); // Item-level currency unused today
             product2.putLong( Param.QUANTITY, 1 );
 
             // Prepare ecommerce bundle
@@ -514,12 +514,12 @@ public class FirebaseEcommerceAnalytics extends CordovaPlugin {
 
             // Set relevant transaction-level parameters
 
-            ecommerceBundle.putString( Param.TRANSACTION_ID, "T66666" );
+            ecommerceBundle.putString( Param.TRANSACTION_ID, "T888" );
             ecommerceBundle.putString( Param.AFFILIATION, "Google Store - Online" );
             ecommerceBundle.putDouble( Param.VALUE, 100.00 );        // Revenue
             ecommerceBundle.putDouble( Param.TAX, 2.85 );
             ecommerceBundle.putDouble( Param.SHIPPING, 5.34 );
-            ecommerceBundle.putString( Param.CURRENCY, "USD" );
+            ecommerceBundle.putString( Param.CURRENCY, "HRK" );
             ecommerceBundle.putString( Param.COUPON, "SUMMER2019" );
 
             // Log ecommerce_purchase event with ecommerce bundle
