@@ -434,10 +434,34 @@ public class FirebaseEcommerceAnalytics extends CordovaPlugin {
                     callbackContext.error("Required param ITEM_ID or ITEM_NAME or QUANTITY is empty");
                     return;
                 } else {
-                    Bundle a = this.getProductBundle(product, i, true);
-                    items.add(a);
+                    Bundle p = new Bundle();
+                    p.putString( Param.ITEM_ID, product.getString("ITEM_ID")); // ITEM_ID or ITEM_NAME is required
+                    p.putString( Param.ITEM_NAME, product.getString("ITEM_NAME"));
+                    
+                    if (!product.getString("ITEM_CATEGORY").isEmpty()) {
+                      p.putString(Param.ITEM_CATEGORY, product.getString("ITEM_CATEGORY"));
+                    }
+                    
+                    if (!product.getString("ITEM_VARIANT").isEmpty()) {
+                      p.putString(Param.ITEM_VARIANT, product.getString("ITEM_VARIANT"));
+                    }
+
+                    if (!product.getString("ITEM_BRAND").isEmpty()) {
+                      p.putString( Param.ITEM_BRAND, product.getString("ITEM_BRAND"));
+                    }
+
+                    p.putDouble( Param.PRICE, product.getDouble("PRICE") );
+                    
+                    if (!product.getString("CURRENCY").isEmpty()) {
+                        p.putString(Param.CURRENCY, product.getString("CURRENCY"));
+                    }
+                    
+                    p.putLong( Param.QUANTITY, product.getString("QUANTITY") );
+                    
+                    items.add(p);
                 }
             }
+            
             Bundle ecommerceBundle = new Bundle();
             ecommerceBundle.putParcelableArrayList("items", items);
 
@@ -447,19 +471,6 @@ public class FirebaseEcommerceAnalytics extends CordovaPlugin {
             ecommerceBundle.putString(Param.AFFILIATION, transactionOptions.getString("AFFILIATION"));
             ecommerceBundle.putDouble(Param.VALUE, transactionOptions.getDouble("VALUE")); // Revenue
             ecommerceBundle.putString(Param.CURRENCY, transactionOptions.getString("CURRENCY"));
-
-            // if(!transactionOptions.isNull("TAX")) {
-            // ecommerceBundle.putDouble(Param.TAX, transactionOptions.getDouble("TAX"));
-            // }
-            // if(!transactionOptions.isNull("SHIPPING")) {
-            // ecommerceBundle.putDouble(Param.SHIPPING,
-            // transactionOptions.getDouble("SHIPPING"));
-            // }
-            // if(!transactionOptions.isNull("COUPON")) {
-            // ecommerceBundle.putString(Param.COUPON,
-            // transactionOptions.getString("COUPON"));
-            // }
-
             ecommerceBundle.putDouble(Param.TAX, transactionOptions.getDouble("TAX"));
             ecommerceBundle.putDouble(Param.SHIPPING, transactionOptions.getDouble("SHIPPING"));
             ecommerceBundle.putString(Param.COUPON, transactionOptions.getString("COUPON"));
